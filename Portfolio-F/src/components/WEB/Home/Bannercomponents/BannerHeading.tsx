@@ -38,9 +38,9 @@ const BannerHeading: React.FC<BannerHeadingProps> = ({ entryName, title, descrip
     };
 
     return (
-        <div className="py-10 px-2 sm:px-5 shadow-xl/3 ring-1 ring-Light_primary dark:backdrop-blur-3xl rounded-2xl relative z-10 overflow-hidden">
+        <div className="py-1 md:py-10 px-2 sm:px-5 shadow-xl/3 ring-[0.5px] ring-Light_primary/50 dark:backdrop-blur-3xl rounded-2xl relative z-10 overflow-hidden">
             <div>
-                <h2 className="capitalize font-bold text-gray-600 dark:text-gray-400 text-sm sm:text-md inline px-3 py-1 ring-1 ring-secondary dark:ring-gray-400 dark:ring-2 rounded-2xl bg-Light_primary dark:bg-Dark_primary">{entryName}</h2>
+                <h2 className="capitalize hidden  font-bold text-gray-600 dark:text-gray-400 text-sm sm:text-md md:inline px-3 py-1 ring-1 ring-secondary dark:ring-gray-400 dark:ring-2 rounded-2xl bg-Light_primary dark:bg-Dark_primary">{entryName}</h2>
                 
                 <motion.h1 
                     initial="hidden"
@@ -67,7 +67,7 @@ const BannerHeading: React.FC<BannerHeadingProps> = ({ entryName, title, descrip
                 <div className='w-50 sm:w-100 h-50 sm:h-100 blur-3xl rounded-full bg-primary/30 dark:bg-primary/15 absolute -top-20 left-0 -z-10'></div>
             </div>
 
-            <p className='text-justify text-[0.7rem] sm:text-sm mt-5 text-gray-800 dark:text-gray-300 font-medium '>{description}</p>
+            <p className='text-justify text-[0.7rem] sm:text-sm mt-5 text-gray-700 dark:text-gray-300 font-jakarta-Regular '>{description}</p>
             <ul className="flex flex-wrap gap-2 mt-5">
                 {skillTags.map((tag, idx) => (
                     <li key={idx} className="px-2 py-1 bg-gray-50 dark:bg-gray-900 dark:text-gray-500 text-gray-400 rounded text-[0.6rem] sm:text-sm">{tag}</li>

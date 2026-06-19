@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Import Image component
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -13,16 +13,16 @@ import Button_menu from '../ui/button/Button_menu';
 const Navbar: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
-  
-  // Fix: Manage theme state safely
+
   const [modeDark, setModeDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const isDark = localStorage.getItem('theme') === 'dark';
     setModeDark(isDark);
+    setMounted(true);
   }, []);
 
-  // 5 second hold and then show our admin route 
   let timer: any;
 
   const startHold = () => {
@@ -43,20 +43,24 @@ const Navbar: React.FC = () => {
       <div className="grid grid-cols-12 items-center">
         {/* Logo */}
         <div className="col-span-2">
-          {/* Added relative class for Next.js Image fill prop */}
-          <div className='relative w-25 md:w-25 lg:w-35 h-auto aspect-video'> 
+          {/* fixed height দেওয়া হয়েছে — fill image এর জন্য দরকার */}
+          <div className='relative w-25 md:w-25 lg:w-35 h-10 md:h-12'>
             <a href="#">
-              <Image 
-                onMouseDown={startHold} 
-                onMouseUp={stopHold} 
-                onTouchStart={startHold} 
-                onTouchEnd={stopHold} 
-                src={modeDark ? "/darklogo.png" : "/lightlogo.png"} 
-                alt="logo" 
-                fill // Fills the parent container
-                className="object-contain" // Maintains aspect ratio
-                priority // Loads immediately (good for LCP/SEO)
-              />
+              {/* mounted না হলে কোনো image render করব না — hydration mismatch এড়াতে */}
+              {mounted && (
+                <Image
+                  onMouseDown={startHold}
+                  onMouseUp={stopHold}
+                  onTouchStart={startHold}
+                  onTouchEnd={stopHold}
+                  src={modeDark ? "/darklogo.png" : "/lightlogo.png"}
+                  alt="logo"
+                  fill
+                  className="object-contain"
+                  priority
+                  sizes="(max-width: 768px) 100px, 140px"
+                />
+              )}
             </a>
           </div>
         </div>
@@ -70,9 +74,9 @@ const Navbar: React.FC = () => {
 
               return (
                 <li
-                  key={idx} 
-                  className='group relative w-30' 
-                  onMouseEnter={() => setHoveredIdx(idx)} 
+                  key={idx}
+                  className='group relative w-30'
+                  onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >
                   <Link
@@ -128,7 +132,7 @@ const Navbar: React.FC = () => {
               </Link>
             );
           })}
-          
+
           {/* Mobile Button */}
           <div className='w-full flex justify-center'>
             <div className='w-40 ring'>

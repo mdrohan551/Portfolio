@@ -35,7 +35,7 @@ const Location: React.FC<Props> = ({ data }) => {
         </a>
 
         {/* Decorative Blur (Optional, kept from your design) */}
-        <div className='absolute bottom-0 left-0 w-64 h-64 blur-[5rem] rounded-full bg-primary/40 -z-0 pointer-events-none'></div>
+        <div className='absolute bottom-0 left-0 w-64 h-64 blur-[5rem] rounded-full  -z-0 pointer-events-none'></div>
       </div>
     </div>
   );

@@ -120,6 +120,8 @@ export const homeBannerData: HomeBannerData = {
     "rest",
     "testing-library",
     "git",
+    "cupcut",
+    "python basic"
   ],
 };
 
@@ -232,14 +234,14 @@ export const projectData: ProjectCard[] = [
     id: 1,
     title: "UI Design Concept",
     slug: "modern minimal ui",
-    image: "https://images.unsplash.com/photo-1640622658992-3f89d831bdb1",
+    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb",
     category: "design",
   },
   {
     id: 2,
     title: "Brand Design System",
     slug: "creative brand ui",
-    image: "https://images.unsplash.com/photo-1581091870627-3a684eec73ec",
+    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb",
     category: "design",
   },
   {
@@ -274,7 +276,7 @@ export const projectData: ProjectCard[] = [
     id: 7,
     title: "Inventory Manager",
     slug: "warehouse software",
-    image: "https://images.unsplash.com/photo-1581091012184-5c1f9f7b6858",
+    image: "https://images.unsplash.com/photo-1535223289827-42f1e9919769",
     category: "inventory",
   },
   {

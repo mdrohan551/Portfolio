@@ -1,8 +1,11 @@
+'use client'
+
+import TabCard from "@/components/ui/card/TabCard";
+import Tabs from "@/components/ui/Tabs/Tabs";
+import TitleHeading from "@/components/ui/Titleheading.tsx/TitleHeading";
+import { projectData } from "@/lib/data";
 import React, { useState } from "react";
-import Tabs from "../../Tabs/Tabs";
-import TabCard from "../../card/TabCard";
-import { projectData } from "../../constants/Data/data";
-import TitleHeading from "../../Titleheading.tsx/TitleHeading";
+
 
 // same categories jeno bar bar na ase uniq ekta ase 
 const categories = [...new Set(projectData.map(item => item.category))];
@@ -21,8 +24,7 @@ const ProjectMockup: React.FC = () => {
             </div>
 
             {/* 3-card grid */}
-            <div className="grid mt-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 
-                      animate-fadeIn">
+            <div className="grid mt-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 animate-fadeIn">
 
                 {filtered.map((item) => (
                     <TabCard key={item.id} item={item} />

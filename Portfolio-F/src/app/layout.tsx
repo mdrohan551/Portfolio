@@ -104,6 +104,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
+
       <body className="min-h-full flex flex-col font-sans">
         <NextTopLoader
           color="var(--color-primary)"

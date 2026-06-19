@@ -12,7 +12,7 @@ const SpecializationLogo: React.FC<Props> = ({ data }) => {
     return (
         <>
 
-            <div className='w-full mt-5 grid grid-cols-12 gap-5 bg-transparent shadow-lg/3 px-5 py-8 rounded-2xl ring-1 ring-Light_primary hover:shadow-xl transition-all duration-300 hover:mb-1 relative'>
+            <div className='w-full mt-5 grid grid-cols-12 gap-5 bg-transparent shadow-lg/3 px-5 py-8 rounded-2xl ring-[0.5px] ring-Light_primary/50 hover:shadow-xl transition-all duration-300 hover:mb-1 relative'>
 
                 {data.logo && data.logo.map((item, index) => (
                     <div key={index} className='col-span-3 md:col-span-3 flex justify-center'>
