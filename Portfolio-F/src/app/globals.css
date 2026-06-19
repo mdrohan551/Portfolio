@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ===== GLOBAL RESET ===== */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+  
+    font-family: var(--font-jakarta-Regular), sans-serif !important;
+    @apply bg-white dark:bg-Dark_primary transition-colors duration-300;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ===== EXTRA COMPONENT STYLES ===== */
+@layer components {
+  .react-datepicker-wrapper {
+    width: 100%;
+  }
+
+  @keyframes pulse-spotlight {
+    0%, 100% {
+      opacity: 1;
+      filter: brightness(1);
+    }
+    50% {
+      opacity: 0.4;
+      filter: brightness(1.5) blur(10px);
+    }
+  }
+
+  @keyframes spotlight {
+    0% {
+      opacity: 0;
+      transform: translate(-72%, -62%) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -40%) scale(1);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.4s ease;
+  }
+}
+
+/* ===== THEME VARIABLES (TAILWIND v4) ===== */
+@theme inline {
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+
+  /* Colors */
+  --color-primary: #78c841;
+  --color-secondary: #4fa317ff;
+  --color-Light_primary: #e2fad17c;
+  --color-Dark_primary: #01140eff;
+  --color-Dark_primary2: rgba(4, 56, 39, 0.34);
+
+  /* 
+     FONT MAPPING FOR LEGACY CLASSES 
+     এখানে তোমার পুরনো ক্লাসের নাম (Left side) এবং 
+     next/font/local এর তৈরি করা ভেরিয়েবল (Right side) ম্যাপ করা হয়েছে।
+  */
+  
+  /* Jakarta Sans Mappings */
+  --font-jakarta-bold: var(--font-jakarta-bold);
+  --font-jakarta-bold-italic: var(--font-jakarta-italic); 
+  --font-jakarta-Extrabold: var(--font-jakarta-extrabold);
+  --font-jakarta-ExtraLight: var(--font-jakarta-Regular); 
+  --font-jakarta-medium: var(--font-jakarta-medium);
+  --font-jakarta-medium-italic: var(--font-jakarta-medium);
+  --font-jakarta-Regular: var(--font-jakarta-Regular);
+  --font-jakarta-Semibold: var(--font-jakarta-semibold);
+
+  /* Yanone Kaffeesatz Mappings */
+  --font-Yanone-Semibold: var(--font-yanone-semibold);
+  --font-Yanone-medium: var(--font-yanone-medium);
+  --font-Yanone-Regular: var(--font-yanone-regular);
 }
