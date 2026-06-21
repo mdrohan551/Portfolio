@@ -20,8 +20,6 @@ export default function RouteGuard({ children }: { children: React.ReactNode }) 
 
     useEffect(() => {
         if (!isMounted) return;
-
-        // ১. যদি লগইন না থাকে
         if (!isAuthenticated) {
             setIsAuthorized(false);
             router.replace('/'); 

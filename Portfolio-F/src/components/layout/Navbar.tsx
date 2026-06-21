@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 
 import { navBar } from '@/lib/data';
 import Button_link from '../ui/button/Button_link';
 import Button_menu from '../ui/button/Button_menu';
+import Logo from '../ui/Logo';
 
 const Navbar: React.FC = () => {
   const router = useRouter();
@@ -25,15 +25,23 @@ const Navbar: React.FC = () => {
 
   let timer: any;
 
+  // Function to handle long press start
   const startHold = () => {
     timer = setTimeout(() => {
       const secretKey = uuidv4();
-      localStorage.setItem('route_token', secretKey);
+      
+      // Using sessionStorage so it clears when browser closes
+      sessionStorage.setItem('route_token', secretKey);
+      
+      // Navigate to the dynamic route with the UUID
       router.push(`/login/${secretKey}`);
-    }, 3000);
+    }, 3000); // 3 seconds hold time
   };
 
-  const stopHold = () => clearTimeout(timer);
+  // Function to cancel the timer if user releases early
+  const stopHold = () => {
+    if (timer) clearTimeout(timer);
+  };
 
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -43,30 +51,25 @@ const Navbar: React.FC = () => {
       <div className="grid grid-cols-12 items-center">
         {/* Logo */}
         <div className="col-span-2">
-          {/* fixed height দেওয়া হয়েছে — fill image এর জন্য দরকার */}
           <div className='relative w-25 md:w-25 lg:w-35 h-10 md:h-12'>
-            <a href="#">
-              {/* mounted না হলে কোনো image render করব না — hydration mismatch এড়াতে */}
-              {mounted && (
-                <Image
-                  onMouseDown={startHold}
-                  onMouseUp={stopHold}
-                  onTouchStart={startHold}
-                  onTouchEnd={stopHold}
-                  src={modeDark ? "/darklogo.png" : "/lightlogo.png"}
-                  alt="logo"
-                  fill
-                  className="object-contain"
-                  priority
-                  sizes="(max-width: 768px) 100px, 140px"
-                />
-              )}
+            {/* Added onMouseDown, onMouseUp, onMouseLeave, onTouchStart, onTouchEnd for long press detection */}
+            <a 
+              href="#"
+              onMouseDown={startHold}
+              onMouseUp={stopHold}
+              onMouseLeave={stopHold}
+              onTouchStart={startHold}
+              onTouchEnd={stopHold}
+              // Prevent default link behavior to avoid conflict with long press
+              onClick={(e) => e.preventDefault()}
+            >
+              <Logo/>
             </a>
           </div>
         </div>
 
         {/* Desktop Menu */}
-        <div className="col-span-8 hidden md:flex justify-center">
+        <nav className="col-span-8 hidden md:flex justify-center">
           <ul className="flex justify-center gap-2 md:gap-0 w-full">
             {navBar.map((item, idx) => {
               const isActive = item.href === pathname;
@@ -82,11 +85,11 @@ const Navbar: React.FC = () => {
                   <Link
                     href={item.href || '/'}
                     className={`block w-full h-full rounded-md px-1 py-2 text-center text-sm font-jakarta-Semibold capitalize transition-all duration-300
-                      ${(isActive && hoveredIdx === null) || isHover ? 'bg-Light_primary dark:bg-Dark_primary text-primary ' : ' text-gray-800 dark:text-gray-200'}
+                      ${(isActive && hoveredIdx === null) || isHover ? 'bg-Light_primary dark:bg-light_primary text-black ' : ' text-gray-800 dark:text-white'}
                     `}
                   >
                     {item.title}
-                    <div className={`absolute bottom-0 left-0 h-[0.2rem] w-full bg-primary origin-bottom transition-transform duration-500
+                    <div className={`absolute bottom-0 left-0 h-[0.2rem] w-full bg-primary dark:bg-white origin-bottom transition-transform duration-500
                         ${(isActive && hoveredIdx === null) || isHover ? 'scale-y-100' : 'scale-y-0'}
                       `}></div>
                   </Link>
@@ -94,11 +97,11 @@ const Navbar: React.FC = () => {
               );
             })}
           </ul>
-        </div>
+        </nav>
 
         {/* Desktop Button */}
         <div className="col-span-2 hidden md:flex justify-end gap-2">
-          <Button_link text="Let's Talk" href='/contact-us' />
+          <Button_link text="Let's Talk" href='/contact-us' className='dark:bg-white dark:text-gray-700 px-2 py-2' arroClassName='dark:bg-primary dark:text-white p-0.5' />
         </div>
 
         {/* Mobile Menu Icon */}
@@ -109,10 +112,10 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Dropdown Menu */}
-        <div
+        <nav
           className={`
             col-span-12 md:hidden 
-            flex flex-col gap-3 bg-linear-to-r from-primary via-lime-600 to-secondary backdrop-blur-xs px-5 py-5 absolute top-20 right-0 w-full
+            flex flex-col gap-3 bg-linear-to-r from-primary via-primary to-secondary backdrop-blur-xs px-5 py-5 absolute top-20 right-0 w-full
             transform transition-all duration-300 origin-top-right z-50
             ${menuOpen ? 'scale-100 opacity-100' : 'scale-0 '}
           `}
@@ -135,11 +138,11 @@ const Navbar: React.FC = () => {
 
           {/* Mobile Button */}
           <div className='w-full flex justify-center'>
-            <div className='w-40 ring'>
-              <Button_link text="Let's Talk" href='/contact-us' />
+            <div className=' rounded ring'>
+              <Button_link text="Let's Talk" href='/contact-us' className='dark:bg-white dark:text-gray-700 px-2 py-2' arroClassName='dark:bg-primary dark:text-white p-0.5' />
             </div>
           </div>
-        </div>
+        </nav>
       </div>
     </div>
   );

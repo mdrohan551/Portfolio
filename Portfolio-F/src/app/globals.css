@@ -74,12 +74,12 @@
   --color-Light_primary: #e2fad17c;
   --color-Dark_primary: #01140eff;
   --color-Dark_primary2: rgba(4, 56, 39, 0.34);
+  /* --color-primary: #db3e00;
+  --color-secondary: #af4116;
+  --color-Light_primary: #db3e0096;
+  --color-Dark_primary: #000000;
+  --color-Dark_primary2: #381305; */
 
-  /* 
-     FONT MAPPING FOR LEGACY CLASSES 
-     এখানে তোমার পুরনো ক্লাসের নাম (Left side) এবং 
-     next/font/local এর তৈরি করা ভেরিয়েবল (Right side) ম্যাপ করা হয়েছে।
-  */
   
   /* Jakarta Sans Mappings */
   --font-jakarta-bold: var(--font-jakarta-bold);

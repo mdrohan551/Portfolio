@@ -37,7 +37,7 @@ const TitleHeading: React.FC<{ title: string, span: string, span2?: string; clas
             <div className="overflow-hidden">
                 <motion.h1 
                     variants={maskVariant} 
-                    className={`${className} dark:text-gray-900`}
+                    className={`${className} dark:text-gray-800 `}
                 >
                     {title}
                 </motion.h1>

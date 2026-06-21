@@ -3,7 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { MainProvider } from "@/providers/MainProvider";
-import NextTopLoader from "nextjs-toploader";
+
+import TopLoader from "@/components/ui/animation/TopLoader";
 
 // Plus Jakarta Sans Variants
 const jakartaRegular = localFont({
@@ -67,7 +68,7 @@ export const metadata: Metadata = {
     default: "Rohan Mohammad",
   },
 };
-// themne 
+
 const themeScript = `
   (function() {
     try {
@@ -106,17 +107,7 @@ export default function RootLayout({
       </head>
 
       <body className="min-h-full flex flex-col font-sans">
-        <NextTopLoader
-          color="var(--color-primary)"
-          initialPosition={0.08}
-          crawlSpeed={200}
-          height={3}
-          crawl={true}
-          showSpinner={true}
-          easing="ease"
-          speed={200}
-          shadow="0 0 10px var(--color-primary), 0 0 5px var(--color-primary)"
-        />
+        <TopLoader />
         <MainProvider>
           {children}
         </MainProvider>

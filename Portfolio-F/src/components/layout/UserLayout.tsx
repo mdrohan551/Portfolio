@@ -4,8 +4,8 @@ import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import type { MasterLayoutProps } from "@/Typeinterface/InterfaceType";
-import BackTotop from "./BackTotop";
-import { Spotlight } from "../ui/animation/Spotlight";
+import BackTotop from "../ui/button/BackTotop";
+// import { Spotlight } from "../ui/animation/Spotlight";
 import { mockFooterData } from "@/lib/data";
 
 const UserLayout: React.FC<MasterLayoutProps> = ({
@@ -16,15 +16,15 @@ const UserLayout: React.FC<MasterLayoutProps> = ({
   return (
     <div className={`${className} relative antialiased min-h-screen`}>
       {/* Background Spotlight Effect */}
-      <div className="hidden dark:block inset-0 pointer-events-none z-0 overflow-hidden fixed top-0 left-0 w-full h-full">
+      {/* <div className=" inset-0 pointer-events-none z-0 overflow-hidden fixed top-0 left-0 ">
         <Spotlight
-          className="top-[-12%] -left-65 sm:left-30 translate-x-[0%] rotate-[-0deg] scale-x-[-1] origin-top"
-          fill="#78c841"
+          className="md:top-[-50%] -top-45 -left-65 sm:left-1 translate-x-[0%]  rotate-0 scale-x-[-1] origin-top blur"
+          fill="var(--color-primary)"
         />
-      </div>
+      </div> */}
 
       {/* Sticky Header */}
-      <header className="sticky top-0 z-[100] w-full bg-white/80 dark:bg-black/20 backdrop-blur-md">
+      <header className="sticky top-0 z-[100] w-full bg-white/80 dark:bg-primary backdrop-blur-md">
         <Navbar />
       </header>
 

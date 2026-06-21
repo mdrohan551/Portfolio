@@ -12,7 +12,7 @@ const Location: React.FC<Props> = ({ data }) => {
     <div className="w-full p-0">
       {/* Map Embed Container */}
       {/* relative added here so that fill image works correctly */}
-      <div className="relative w-full  h-100 "> 
+      <div className="relative w-full  h-40 md:h-80 "> 
         
         {/* Optimized Image */}
         <Image 
@@ -28,9 +28,9 @@ const Location: React.FC<Props> = ({ data }) => {
           href={data.mapLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center gap-2 text-xl font-semibold text-gray-700 bg-white/90 backdrop-blur-sm px-8 py-4 rounded-2xl shadow-2xl hover:bg-white transition-all duration-300 group"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center gap-2 text-sm md:text-xl font-semibold text-gray-700 bg-white/90 backdrop-blur-sm px-2 md:px-8 py-1 md:py-4 rounded-xl md:rounded-2xl shadow-2xl hover:bg-white transition-all duration-300 group"
         >
-          <HiOutlineLocationMarker className="text-primary w-6 h-6 group-hover:scale-110 transition-transform" />
+          <HiOutlineLocationMarker className="text-primary w-4 h-4 md:w-6 md:h-6 group-hover:scale-110 transition-transform" />
           <span>{data.title}</span>
         </a>
 

@@ -1,19 +1,19 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image'; // Next.js Image import added
 import type { FooterProps, NavLink, SocialLink } from '../../Typeinterface/InterfaceType';
 import { myMap } from '@/lib/data';
 import Location from './Location';
 import TitleHeading from '../ui/Titleheading.tsx/TitleHeading';
 import Button_link from '../ui/button/Button_link';
+import Logo from '../ui/Logo';
 
 const SocialIcon: React.FC<{ link: SocialLink }> = ({ link }) => {
   const Icon = link.icon;
   return (
     <a href={link.url} target="_blank" rel="noopener noreferrer"
-      className="text-gray-400 hover:text-primary transition-colors duration-200">
-      <Icon className="w-5 h-5 md:w-6 md:h-6" />
+      className="text-gray-50 md:text-gray-400 hover:text-primary transition-colors duration-200">
+      <Icon className="w-6 h-6 md:w-6 md:h-6" />
     </a>
   );
 };
@@ -39,42 +39,52 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
   }, []);
 
   return (
-    <div className=" mt-10 mb-5 ">
-      <div className=" container  mx-auto rounded-3xl p-6 md:p-12 shadow-lg ring-1 ring-Light_primary  relative border-gray-700 dark:overflow-hidden">
-        <TitleHeading title="hire me" span="Footer" className=' hidden lg:block text-[15rem] font-bold uppercase absolute -z-30 left-1/6 -top-20 text-gray-50' />
+    <div className=" mt-5 md:mt-10 mb-5 ">
+      <div className=" container  mx-auto rounded-3xl p-2 md:p-12 shadow-lg shadow-gray-50  dark:shadow-gray-900 border-b border-l border-r border-primary/20   relative  ">
+        <TitleHeading title="hire me" span="Footer" className='  text-5xl  left-1/4 md:left-1/6 md:text-[15rem] font-bold uppercase absolute -z-30 top-0  md:-top-20 text-gray-200 md:text-gray-50' />
 
         {/* Changed to grid: responsive 1 column (mobile) -> 2 columns (md+) */}
-        <div className='grid grid-cols-12  gap-6 border-b border-gray-700'>
+        <div className='grid grid-cols-12  gap-0 md:gap-6 border-b border-gray-300'>
 
           {/* LEFT COLUMN - keep original design & content */}
-          <div className="grid col-span-12 md:col-span-6 items-start pb-12 md:pb-16 relative">
-            <div className='w-100 h-100 blur-3xl rounded-full bg-primary/20 dark:bg-primary/10 absolute bottom-0 -left-20 -z-10'></div>
+          <div className="grid col-span-12 md:col-span-6 items-start pb-1 md:pb-16 relative">
+            <div className='md:w-100 w-50 h-50 md:h-100 blur-3xl rounded-full bg-primary/50 md:bg-primary/30 dark:bg-primary/10 absolute bottom-10 left-0 md:-left-20 -z-10'></div>
 
             {/* Added relative and aspect ratio for Next.js Image optimization */}
-            <div className="relative w-[150px] h-[50px] p-1 rounded-2xl mb-8 -z-30 ">
-              <Image
-                src={modeDark ? "/darklogo.png" : "/lightlogo.png"}
-                alt="logo"
-                fill
-                className="object-contain"
-                priority // Footer logo LCP optimization
-                sizes="150px"
-              />
+            <div className="relative w-[150px] h-[50px] p-1 rounded-2xl mb-0 md:mb-8 -z-30 ">
+              <Logo />
             </div>
 
-            <h2 className="text-3xl font-Yanone-Regular md:text-5xl font-extrabold mb-4 max-w-2xl tracking-[1px] uppercase  z-10 dark:text-transparent dark:bg-clip-text dark:bg-linear-to-l dark:from-gray-500 via-gray-600 dark:to-gray-200">
+            <h2 className="text-3xl font-Yanone-Regular md:text-5xl font-extrabold mb-1 md:mb-4 max-w-2xl tracking-[1px] uppercase  z-10 dark:text-transparent dark:bg-clip-text dark:bg-linear-to-l dark:from-gray-500 via-gray-600 dark:to-gray-200">
               {cta.title}
             </h2>
-            <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-md text-sm md:text-base">
+            <p className="text-gray-500 dark:text-gray-400 mb-2 md:mb-8 max-w-md text-xs md:text-base">
               {cta.subtitle}
             </p>
-            <div className='w-50'>
+
+
+            <div className="w-50 hidden md:flex">
               <Button_link
                 href={cta.buttonLink}
                 text={cta.buttonText}
-                className='px-8 py-3'
+                className='px-4 py-3'
               />
             </div>
+            <div className='flex md:hidden w-full  items-center justify-between'>
+              <Button_link
+                href={cta.buttonLink}
+                text={cta.buttonText}
+                className='px-4 py-3'
+              />
+
+              {/* Mobile e dekhabe, Desktop e hidden thakbe */}
+              <div className="flex md:hidden gap-4 bg-primary/94 px-3 py-3 rounded">
+                {socialLinks.map(link => (
+                  <SocialIcon key={link.name} link={link} />
+                ))}
+              </div>
+            </div>
+
           </div>
 
           {/* RIGHT COLUMN - Location (kept same, only wrapper remains) */}
@@ -87,10 +97,10 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
         </div>
 
         {/* Bottom row (copyright, nav, socials) - unchanged */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 gap-8">
-          <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300 text-sm">
+        <div className="flex flex-col md:flex-row justify-between items-center pt-2 md:pt-8 gap-4 md:gap-8">
+          <div className="flex items-center gap-3 text-gray-500 dark:text-gray-300 text-xs md:text-sm">
             <div className="">&copy;</div>
-            All Rights Reserved {new Date().getFullYear()}<a href="#" target='_blank' className='text-secondary font-inter font-extrabold uppercase -ml-2'>Rohan</a>
+            All Rights Reserved {new Date().getFullYear()}<a href="#" target='_blank' className='text-secondary font-inter font-extrabold uppercase -ml-2'>rohan</a>
           </div>
 
           <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2">
@@ -99,7 +109,7 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
             ))}
           </nav>
 
-          <div className="flex gap-4 md:gap-6">
+          <div className="md:flex gap-4 md:gap-6 hidden ">
             {socialLinks.map(link => (
               <SocialIcon key={link.name} link={link} />
             ))}

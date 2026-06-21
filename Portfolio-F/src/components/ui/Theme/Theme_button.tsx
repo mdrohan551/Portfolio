@@ -24,7 +24,7 @@ const Theme_button: React.FC<{ className?: string, user: boolean }> = ({ classNa
     return (
         <button
             onClick={changeTheme}
-            className={`${className} p-2 rounded-md transition-all duration-300 flex items-center justify-between gap-2 capitalize`}
+            className={`${className} p-0 rounded-md transition-all duration-300 flex items-center justify-between gap-2 capitalize`}
         >
             {!mounted ? (
                 <span className="w-4 h-4 inline-block" />

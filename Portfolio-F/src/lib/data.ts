@@ -73,7 +73,7 @@ export const navBar: menuInterface[] = [
   { title: "project", href: "/project" },
   { title: "services", href: "/services" },
   { title: "about us", href: "/about" },
-  { title: "Testimonial", href: "/Testimonial" },
+  { title: "Testimonial", href: "/testimonial" },
   { title: "Blog", href: "/blog" },
   { title: "FAQs", href: "/faq" },
 ];

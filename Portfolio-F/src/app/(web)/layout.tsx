@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import UserLayout from "@/components/layout/UserLayout";
+import { homeBannerData } from "@/lib/data";
+
+
 export const metadata: Metadata = {
   title: {
     default: "Rohan Mohammad | Full-Stack Developer & Next.js Specialist",
     template: "%s | Rohan Mohammad",
   },
-  description:
-    "Professional Full-Stack Web Developer specializing in Next.js, MERN Stack, and TypeScript. I build high-performance, SEO-friendly web applications.",
+  // Dynamic description from homeBannerData
+  description: homeBannerData.description,
   keywords: [
+    ...homeBannerData.skillTags, 
     "Next.js Developer",
     "MERN Stack Developer",
     "Full-Stack Web Development",
@@ -15,16 +19,15 @@ export const metadata: Metadata = {
     "TypeScript Developer",
     "UI/UX Implementation",
     "Freelance Developer Bangladesh",
-    "Redux Toolkit",
-    "Tailwind CSS",
   ],
+  
   authors: [{ name: "Rohan Mohammad", url: "https://yourportfolio.com" }],
   creator: "Rohan Mohammad",
   publisher: "Rohan Mohammad",
   openGraph: {
     title: "Rohan Mohammad | Full-Stack Developer & Next.js Specialist",
-    description:
-      "Building scalable, high-performance web applications with Next.js & MERN Stack. Check out my projects and services.",
+    // Using dynamic description for OpenGraph as well
+    description: homeBannerData.description,
     url: "https://yourportfolio.com",
     siteName: "Rohan Mohammad Portfolio",
     images: [
@@ -41,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Rohan Mohammad | Full-Stack Developer",
-    description: "Expert in Next.js, MERN Stack, and Modern Web Technologies.",
+    description: homeBannerData.description,
     images: ["/images/myimage.png"],
     creator: "@rohan_webp",
   },
@@ -55,7 +58,7 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
+  }
 };
 
 export default function WebLayout({
